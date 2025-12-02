@@ -13,7 +13,7 @@ RUN dotnet restore "Zoologico.API/Zoologico.API.csproj"
 # Copiamos todo el código
 COPY . .
 
-RUN dotnet build "Zoologico.API/Zoologico.API.csproj" -c Release -o /app/build
+RUN dotnet build "Zoologico.API/Zoologico.API.csproj" -c Release -o /app/build 
 
 FROM build AS publish
 RUN dotnet publish "Zoologico.API/Zoologico.API.csproj" -c Release -o /app/publish
