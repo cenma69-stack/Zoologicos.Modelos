@@ -5,18 +5,17 @@ EXPOSE 10000
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copiamos solo el .csproj del API
-COPY ["Zoologico.API/Zoologico.API.csproj", "Zoologico.API/"]
-
-RUN dotnet restore "Zoologico.API/Zoologico.API.csproj"
+# Copiamos el .csproj (estás dentro de Zoologico.API, no hay subcarpetas)
+COPY ["Zoologico.API.csproj", "./"]
+RUN dotnet restore "Zoologico.API.csproj"
 
 # Copiamos todo el código
 COPY . .
 
-RUN dotnet build "Zoologico.API/Zoologico.API.csproj" -c Release -o /app/build 
+RUN dotnet build "Zoologico.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Zoologico.API/Zoologico.API.csproj" -c Release -o /app/publish
+RUN dotnet publish "Zoologico.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
