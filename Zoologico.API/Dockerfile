@@ -7,18 +7,18 @@ EXPOSE 10000
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copiamos toda la solución (necesario para proyectos múltiples)
+# Copiamos TODO el repo para que los proyectos se vean entre sí
 COPY . .
 
-# Restauramos desde la carpeta donde está la API
-RUN dotnet restore "./Zoologico.API/Zoologico.API.csproj"
+# Restauramos usando la ruta correcta del .csproj
+RUN dotnet restore "./Zoologicos.Modelos/Zoologico.API/Zoologico.API.csproj"
 
-# Build
-RUN dotnet build "./Zoologico.API/Zoologico.API.csproj" -c Release -o /app/build
+# Compilamos usando la ruta correcta también
+RUN dotnet build "./Zoologicos.Modelos/Zoologico.API/Zoologico.API.csproj" -c Release -o /app/build
 
 # --- Publish Layer ---
 FROM build AS publish
-RUN dotnet publish "./Zoologico.API/Zoologico.API.csproj" -c Release -o /app/publish
+RUN dotnet publish "./Zoologicos.Modelos/Zoologico.API/Zoologico.API.csproj" -c Release -o /app/publish
 
 # --- Final Runtime ---
 FROM base AS final
