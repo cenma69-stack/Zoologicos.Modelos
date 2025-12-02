@@ -12,7 +12,7 @@ RUN dotnet build "Zoologico.API.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "Zoologico.API.csproj" -c Release -o /app/publish
 
-FROM base AS final
+FROM base AS final 
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Zoologico.API.dll"]
