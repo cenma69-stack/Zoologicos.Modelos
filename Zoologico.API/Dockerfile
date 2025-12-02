@@ -11,17 +11,17 @@ WORKDIR /src
 COPY . .
 
 # Restauramos desde la carpeta donde está la API
-RUN dotnet restore "./Zoologicos.API/Zoologicos.API.csproj"
+RUN dotnet restore "./Zoologico.API/Zoologico.API.csproj"
 
 # Build
-RUN dotnet build "./Zoologicos.API/Zoologicos.API.csproj" -c Release -o /app/build
+RUN dotnet build "./Zoologico.API/Zoologico.API.csproj" -c Release -o /app/build
 
 # --- Publish Layer ---
 FROM build AS publish
-RUN dotnet publish "./Zoologicos.API/Zoologicos.API.csproj" -c Release -o /app/publish
+RUN dotnet publish "./Zoologico.API/Zoologico.API.csproj" -c Release -o /app/publish
 
 # --- Final Runtime ---
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Zoologicos.API.dll"]
+ENTRYPOINT ["dotnet", "Zoologico.API.dll"]
