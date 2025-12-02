@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoologicos.Modelos", "Zoologicos.Modelos\Zoologicos.Modelos.csproj", "{6C6968DB-63D1-4D7F-8FF3-3C7E902A08E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoologico.API", "Zoologico.API\Zoologico.API.csproj", "{2819C650-E42C-49C1-B7E5-0398B02E091B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C6968DB-63D1-4D7F-8FF3-3C7E902A08E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C6968DB-63D1-4D7F-8FF3-3C7E902A08E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C6968DB-63D1-4D7F-8FF3-3C7E902A08E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C6968DB-63D1-4D7F-8FF3-3C7E902A08E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2819C650-E42C-49C1-B7E5-0398B02E091B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2819C650-E42C-49C1-B7E5-0398B02E091B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2819C650-E42C-49C1-B7E5-0398B02E091B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2819C650-E42C-49C1-B7E5-0398B02E091B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
