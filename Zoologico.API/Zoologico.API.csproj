@@ -34,4 +34,8 @@
     <ProjectReference Include="..\Zoologicos.Modelos\Zoologicos.Modelos.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

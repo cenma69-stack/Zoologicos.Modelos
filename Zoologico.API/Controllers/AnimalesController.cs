@@ -22,25 +22,16 @@ namespace Zoologico.API.Controllers
 
         // GET: api/Animales
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Animal>>> GetAnimales()
+        public async Task<ActionResult<IEnumerable<Animal>>> GetAnimal()
         {
-            return await _context
-                .Animales
-                //.Include(a => a.Especie)
-                //.Include(a => a.Raza)
-                .ToListAsync();
+            return await _context.Animal.ToListAsync();
         }
 
         // GET: api/Animales/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Animal>> GetAnimal(int id)
         {
-            var animal = await _context
-                .Animales
-                .Include(a => a.Especie)
-                .Include(a => a.Raza)
-                .Where(a => a.Id == id)
-                .FirstOrDefaultAsync();
+            var animal = await _context.Animal.FindAsync(id);
 
             if (animal == null)
             {
@@ -86,18 +77,8 @@ namespace Zoologico.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
         {
-            _context.Animales.Add(animal);
+            _context.Animal.Add(animal);
             await _context.SaveChangesAsync();
-
-            animal.Especie = await _context.Especies.FindAsync(animal.EspeciesCodigo);
-            animal.Raza = await _context.Razas.FindAsync(animal.RazaId);
-
-            //animal = await _context
-            //    .Animales
-            //    .Include(a => a.Especie)
-            //    .Include(a => a.Raza)
-            //    .Where(a => a.Id == animal.Id)
-            //    .FirstOrDefaultAsync();
 
             return CreatedAtAction("GetAnimal", new { id = animal.Id }, animal);
         }
@@ -106,13 +87,13 @@ namespace Zoologico.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAnimal(int id)
         {
-            var animal = await _context.Animales.FindAsync(id);
+            var animal = await _context.Animal.FindAsync(id);
             if (animal == null)
             {
                 return NotFound();
             }
 
-            _context.Animales.Remove(animal);
+            _context.Animal.Remove(animal);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -120,7 +101,7 @@ namespace Zoologico.API.Controllers
 
         private bool AnimalExists(int id)
         {
-            return _context.Animales.Any(e => e.Id == id);
+            return _context.Animal.Any(e => e.Id == id);
         }
     }
 }
