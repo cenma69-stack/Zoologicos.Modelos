@@ -14,7 +14,7 @@ using Zoologicos.Modelos;
 
         public DbSet<Zoologicos.Modelos.Animal> Animal { get; set; } = default!;
 
-public DbSet<Zoologicos.Modelos.Especie> Especie { get; set; } = default!;
+        public DbSet<Zoologicos.Modelos.Especie> Especie { get; set; } = default!;
 
-public DbSet<Zoologicos.Modelos.Raza> Raza { get; set; } = default!;
+        public DbSet<Zoologicos.Modelos.Raza> Raza { get; set; } = default!;
     }

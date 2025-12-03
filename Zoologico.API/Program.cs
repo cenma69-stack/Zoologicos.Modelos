@@ -12,9 +12,11 @@ namespace Zoologico.API
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<ZoologicoAPIContext>(options =>
                 //options.UseSqlServer(builder.Configuration.GetConnectionString("ZoologicoAPIContext.sqlserver") ?? throw new InvalidOperationException("Connection string 'ZoologicoAPIContext' not found."))
-                options.UseNpgsql(builder.Configuration.GetConnectionString("ZoologicoAPIContext.postgresql") ?? throw new InvalidOperationException("Connection string 'ZoologicoAPIContext' not found.")));
                 //options.UseOracle(builder.Configuration.GetConnectionString("ZoologicoAPIContext.oracle") ?? throw new InvalidOperationException("Connection string 'ZoologicoAPIContext' not found."))
-
+                options.UseNpgsql(builder.Configuration.GetConnectionString("ZoologicoAPIContext") ?? throw new InvalidOperationException("Connection string 'ZoologicoAPIContext' not found."))
+                               
+            );
+                
             // Add services to the container.
 
             builder.Services.AddControllers();
