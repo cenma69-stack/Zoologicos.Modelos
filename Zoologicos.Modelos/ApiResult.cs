@@ -22,7 +22,7 @@ namespace Zoologicos.Modelos
             };
         }
 
-        public static ApiResult<T> Fail(string message)
+        public static ApiResult<T> Fail(string message)//error 
         {
             return new ApiResult<T>
             {
