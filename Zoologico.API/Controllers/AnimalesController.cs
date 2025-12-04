@@ -11,7 +11,7 @@ namespace Zoologico.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AnimalesController : ControllerBase
+    public class AnimalesController : ControllerBase //conexcion 
     {
         private readonly ZoologicoAPIContext _context;
 
@@ -25,6 +25,7 @@ namespace Zoologico.API.Controllers
         public async Task<ActionResult<IEnumerable<Animal>>> GetAnimal()
         {
             return await _context.Animal
+                //relaciones
                 //.Include(a => a.Especie)
                 //.Include(a => a.Raza)
                 .ToListAsync();
@@ -36,7 +37,7 @@ namespace Zoologico.API.Controllers
         {
             var animal = await _context
                 .Animal
-                .Include(a => a.Especie)
+                .Include(a => a.Especie)//Relaciones
                 .Include(a => a.Raza)
                 .Where(a => a.Id == id)
                 .FirstOrDefaultAsync();

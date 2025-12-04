@@ -43,7 +43,7 @@ namespace Zoologico.API.Controllers
                     return ApiResult<Especie>.Fail("Datos no encontrados");
                 }
 
-                return ApiResult<Especie>.Ok(especie);
+                return ApiResult<Especie>.Ok(especie);//ApiResult 
             }
             catch (Exception ex)
             {
