@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoologicos.Modelos", "Zoolo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoologico.API", "Zoologico.API\Zoologico.API.csproj", "{2819C650-E42C-49C1-B7E5-0398B02E091B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoologico.APITest", "Zoologico.APITest\Zoologico.APITest.csproj", "{F87DA092-B23F-41AD-AC10-7A14ADA0918F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2819C650-E42C-49C1-B7E5-0398B02E091B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2819C650-E42C-49C1-B7E5-0398B02E091B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2819C650-E42C-49C1-B7E5-0398B02E091B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F87DA092-B23F-41AD-AC10-7A14ADA0918F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F87DA092-B23F-41AD-AC10-7A14ADA0918F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F87DA092-B23F-41AD-AC10-7A14ADA0918F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F87DA092-B23F-41AD-AC10-7A14ADA0918F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

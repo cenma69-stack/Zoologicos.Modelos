@@ -24,14 +24,22 @@ namespace Zoologico.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Animal>>> GetAnimal()
         {
-            return await _context.Animal.ToListAsync();
+            return await _context.Animal
+                //.Include(a => a.Especie)
+                //.Include(a => a.Raza)
+                .ToListAsync();
         }
 
         // GET: api/Animales/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Animal>> GetAnimal(int id)
         {
-            var animal = await _context.Animal.FindAsync(id);
+            var animal = await _context
+                .Animal
+                .Include(a => a.Especie)
+                .Include(a => a.Raza)
+                .Where(a => a.Id == id)
+                .FirstOrDefaultAsync();
 
             if (animal == null)
             {

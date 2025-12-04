@@ -8,12 +8,12 @@ namespace Zoologicos.Modelos
 {
     public class ApiResult<T>
     {
-        //Errores claros para el usuario/desarrollador
+        //errores claros para el usuario y el desarrollador
         public bool Success { get; set; }
         public string Message { get; set; }
         public T Data { get; set; }
 
-        public static ApiResult<T> Ok(T data)
+        public static ApiResult<T> Ok(T data)//200
         {
             return new ApiResult<T>
             {

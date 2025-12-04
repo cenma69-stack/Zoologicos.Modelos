@@ -29,26 +29,36 @@ namespace Zoologico.API.Controllers
 
         // GET: api/Especies/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Especie>> GetEspecie(int id)
+        public async Task<ActionResult<ApiResult<Especie>>> GetEspecie(int id)
         {
-            var especie = await _context.Especie.FindAsync(id);
-
-            if (especie == null)
+            try
             {
-                return NotFound();
-            }
+                var especie = await _context
+                    .Especie
+                    .Include(e => e.Animals)
+                    .FirstOrDefaultAsync(e => e.Codigo == id);
 
-            return especie;
+                if (especie == null)
+                {
+                    return ApiResult<Especie>.Fail("Datos no encontrados");
+                }
+
+                return ApiResult<Especie>.Ok(especie);
+            }
+            catch (Exception ex)
+            {
+                return ApiResult<Especie>.Fail(ex.Message);
+            }
         }
 
         // PUT: api/Especies/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEspecie(int id, Especie especie)
+        public async Task<ActionResult<ApiResult<Especie>>> PutEspecie(int id, Especie especie)
         {
             if (id != especie.Codigo)
             {
-                return BadRequest();
+                return ApiResult<Especie>.Fail("No coinciden los identificadores");
             }
 
             _context.Entry(especie).State = EntityState.Modified;
@@ -57,46 +67,60 @@ namespace Zoologico.API.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!EspecieExists(id))
                 {
-                    return NotFound();
+                    return ApiResult<Especie>.Fail("Datos no encontrados");
                 }
                 else
                 {
-                    throw;
+                    return ApiResult<Especie>.Fail(ex.Message);
                 }
             }
 
-            return NoContent();
+            return ApiResult<Especie>.Ok(null);
         }
 
         // POST: api/Especies
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Especie>> PostEspecie(Especie especie)
+        public async Task<ActionResult<ApiResult<Especie>>> PostEspecie(Especie especie)
         {
-            _context.Especie.Add(especie);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Especie.Add(especie);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetEspecie", new { id = especie.Codigo }, especie);
+                return ApiResult<Especie>.Ok(especie);
+            }
+            catch (Exception ex)
+            {
+                return ApiResult<Especie>.Fail(ex.Message);
+            }
         }
 
         // DELETE: api/Especies/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEspecie(int id)
+        public async Task<ActionResult<ApiResult<Especie>>> DeleteEspecie(int id)
         {
-            var especie = await _context.Especie.FindAsync(id);
-            if (especie == null)
+            try
             {
-                return NotFound();
+                var especie = await _context.Especie.FindAsync(id);
+                if (especie == null)
+                {
+                    return ApiResult<Especie>.Fail("datos no encontrados");
+                }
+
+                _context.Especie.Remove(especie);
+                await _context.SaveChangesAsync();
+
+                return ApiResult<Especie>.Ok(null);
             }
-
-            _context.Especie.Remove(especie);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return ApiResult<Especie>.Fail(ex.Message);
+            }
         }
 
         private bool EspecieExists(int id)
