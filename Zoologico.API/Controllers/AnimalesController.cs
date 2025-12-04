@@ -107,7 +107,7 @@ namespace Zoologico.API.Controllers
 
             return NoContent();
         }
-
+         
         private bool AnimalExists(int id)
         {
             return _context.Animal.Any(e => e.Id == id);
