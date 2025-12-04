@@ -104,8 +104,8 @@ namespace Zoologico.API.Controllers
 
             _context.Animal.Remove(animal);
             await _context.SaveChangesAsync();
-
-            return NoContent();
+             
+            return NoContent(); 
         }
          
         private bool AnimalExists(int id)
